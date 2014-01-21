@@ -22,7 +22,8 @@ Example
     }
     
     void hook() {
-        aihl_hook_symbol("libc.so", "stat", hooked_stat);
+		void *handle = aihl_load_library("libc.so");
+        aihl_hook_symbol(handle, "stat", hooked_stat);
     }
 
 >This library works under the assumption that the internal info structure used by the android linker does not change or is changed in a backward compatible format. This may not be a safe assumption. The code was successfully tested with cyanogenmod version 10.1 and 11.
